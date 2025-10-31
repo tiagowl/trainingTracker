@@ -51,7 +51,7 @@ Como UX Designer, preciso que você:
 ### Para Pesquisa de Usuário
 ```
 Conduza pesquisa de usuário para [produto]:
-[Inserir contexto]
+Eu,que sou um praticante de musculação
 
 Foque em:
 - Personas e necessidades

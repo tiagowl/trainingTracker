@@ -51,7 +51,11 @@ Como Arquiteto de Software, preciso que você:
 ### Para Design de Arquitetura
 ```
 Projete a arquitetura para um sistema com os seguintes requisitos:
-[Inserir requisitos técnicos]
+- Aplicação web
+- Layout adaptado para visualização no navegador desktop e mobile
+- Otimizado para performance em servidores lentos
+- Somente um usuario irá usar
+- Orçamento gratuito
 
 Considere:
 - Volume de usuários esperado

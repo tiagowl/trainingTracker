@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Training Tracker API
+  version: 0.1.0
+servers:
+  - url: http://localhost:3001
+paths:
+  /treinos:
+    get:
+      summary: Listar treinos
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Criar treino
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome: { type: string }
+                prazoVencimentoDias: { type: integer }
+      responses:
+        '201': { description: Criado }
+  /treinos/{id}:
+    patch:
+      summary: Atualizar treino
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200': { description: OK }
+    delete:
+      summary: Remover treino
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: Sem conteúdo }
+  /exercicios/treino/{treinoId}:
+    post:
+      summary: Criar exercício no treino
+      parameters:
+        - in: path
+          name: treinoId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome: { type: string }
+                series: { type: integer }
+                repeticoes: { type: integer }
+                peso: { type: number }
+      responses:
+        '201': { description: Criado }
+  /exercicios/{id}:
+    patch:
+      summary: Atualizar exercício
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+    delete:
+      summary: Remover exercício
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: Sem conteúdo }
+  /sessoes:
+    get:
+      summary: Listar sessões
+      parameters:
+        - in: query
+          name: periodo
+          schema: { type: string, enum: [mes] }
+        - in: query
+          name: treinoId
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Criar sessão (check-in)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                treinoId: { type: string }
+                dataHora: { type: string, format: date-time }
+      responses:
+        '201': { description: Criado }
+  /estatisticas:
+    get:
+      summary: Estatísticas gerais
+      parameters:
+        - in: query
+          name: periodo
+          schema: { type: string, enum: [mes] }
+      responses:
+        '200': { description: OK }
+  /estatisticas/exercicio/{id}:
+    get:
+      summary: Série temporal de peso por exercício
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+
+

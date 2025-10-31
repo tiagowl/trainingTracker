@@ -45,7 +45,18 @@ Como Product Owner, preciso que você:
 ### Para Análise de Requisitos
 ```
 Analise os seguintes requisitos e crie user stories detalhadas:
-[Inserir requisitos aqui]
+
+faça um sistema para me ajudar com meus treinos de musculação, com as seguintes funcionalidades:
+
+- Poder cadastrar meus treinos, colocando os exercícios, atraves de um input de texto
+- Poder separar os treinos entre a, b, c, etc, quantos eu quiser
+- Poder fazer o checkin do treino que vou fazer no dia
+- Ter um registro dos treinos que realizei, contendo o dia e horario que treinei
+- Cada treino (a, b, c, etc) tem um prazo de vencimento
+- Notificar quando o prazo de vencimento do plano chegar
+- Estatísticas de quantos treinos foram realizados ao todo e no mês
+- Cada exercício do treino devera registrar o nome, numero de repetições, numero de series e peso
+- Estatística da evolução dos pesos no treino
 
 Foque em:
 - Identificar personas

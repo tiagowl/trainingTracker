@@ -44,3 +44,79 @@
 ## Documentação da API
 Veja `src/docs/openapi.yaml`.
 
+## 🚀 Deploy na Vercel
+
+### Pré-requisitos
+1. Conta na Vercel (https://vercel.com)
+2. Banco de dados PostgreSQL (ex: Supabase, Railway, Neon, etc.)
+3. Variáveis de ambiente configuradas
+
+### Configuração
+
+#### 1. Variáveis de Ambiente na Vercel
+Configure as seguintes variáveis no dashboard da Vercel (Settings → Environment Variables):
+- `DATABASE_URL`: URL de conexão do PostgreSQL
+- `NODE_ENV`: `production`
+
+#### 2. Deploy via CLI
+
+```bash
+# 1. Instalar Vercel CLI
+npm i -g vercel
+
+# 2. Navegar para o diretório do backend
+cd src/backend
+
+# 3. Login na Vercel
+vercel login
+
+# 4. Deploy (primeiro deploy)
+vercel
+
+# 5. Deploy em produção
+vercel --prod
+```
+
+#### 3. Deploy via GitHub Integration
+
+1. Conecte seu repositório no dashboard da Vercel
+2. Configure o projeto:
+   - **Root Directory**: `src/backend`
+   - **Build Command**: `npm run vercel-build`
+   - **Output Directory**: (deixe vazio ou `dist`)
+   - **Install Command**: `npm install`
+3. Adicione as variáveis de ambiente
+4. Faça o deploy
+
+### Migrações do Prisma
+
+Após o primeiro deploy, execute as migrações no banco de dados:
+
+```bash
+# Via CLI local (com DATABASE_URL configurada)
+npm run prisma:deploy
+
+# Ou via script no Vercel (se configurado)
+# Adicione um build command ou script de post-deploy
+```
+
+### Notas Importantes
+
+- A Vercel usa serverless functions, então o servidor não fica rodando continuamente
+- O handler serverless está em `api/index.ts`
+- O script `vercel-build` gera o Prisma Client e compila o TypeScript
+- Certifique-se de que o `DATABASE_URL` está configurado corretamente
+- A primeira requisição pode ser mais lenta (cold start)
+
+### Estrutura de Deploy
+
+```
+src/backend/
+├── api/
+│   └── index.ts          # Handler serverless para Vercel
+├── src/                  # Código fonte
+├── vercel.json           # Configuração da Vercel
+├── package.json          # Scripts e dependências
+└── prisma/               # Schema e migrações do Prisma
+```
+
